@@ -42,10 +42,11 @@
             color: white;
         }
     </style>
+    <script src="https://www.paypalobjects.com/ncp/cart/cart.js" data-merchant-id="VGNK9SF2TG3YC"></script>
 </head>
 <body>
     <div class="header">
-        <img src="ObrazekLogo.png" alt="Lfrx Studios Logo">
+        <img src="LogoImage.png" alt="Lfrx Studios Logo">
         <span>Lfrx Studios</span>
         <a href="https://studio.lfrx.ovh/shop">Shop</a>
     </div>
@@ -53,11 +54,19 @@
     <div class="container">
         <h1>Welcome to Lfrx Studios Shop</h1>
         <p>Browse our products and support our studio!</p>
-        <a href="https://studios.lfrx.ovh/shop-PO-FOTH">Preorder The Face Of The Virus</a>
+        
+        <h2>Available Products</h2>
+        <p><a href="https://studio.lfrx.ovh/shop/Thefaceoftheviruspreorder">Preorder The Face Of The Virus</a></p>
+        
+        <h2>Shopping Cart</h2>
+        <paypal-cart-button data-id="pp-view-cart"></paypal-cart-button>
+        <script>
+          cartPaypal.Cart({ id: "pp-view-cart" })
+        </script>
     </div>
     
     <div class="footer">
-        Copyright @ LfrxStudios 2025
+        Copyright © Lfrx Studios 2025
     </div>
 </body>
 </html>
