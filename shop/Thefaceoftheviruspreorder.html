@@ -42,29 +42,35 @@
             color: white;
         }
     </style>
+    <script src="https://www.paypalobjects.com/ncp/cart/cart.js" data-merchant-id="VGNK9SF2TG3YC"></script>
 </head>
 <body>
     <div class="header">
-        <img src="ObrazekLogo.png" alt="Lfrx Studios Logo">
+        <img src="LogoImage.png" alt="Lfrx Studios Logo">
         <span>Lfrx Studios</span>
         <a href="https://studio.lfrx.ovh/shop">Shop</a>
     </div>
     
     <div class="container">
         <h1>The Face Of The Virus - Preorder</h1>
-        <p><strong>Gives You:</strong></p>
-        <p>The Game right when it releases to Early Access</p>
+        <p><strong>Includes:</strong></p>
+        <p>Access to the game as soon as it releases in Early Access.</p>
         
-        <script async src="https://js.stripe.com/v3/buy-button.js"></script>
+        <h2>Shopping Cart</h2>
+        <paypal-cart-button data-id="pp-view-cart"></paypal-cart-button>
+        <script>
+          cartPaypal.Cart({ id: "pp-view-cart" })
+        </script>
         
-        <stripe-buy-button
-          buy-button-id="buy_btn_1QwOXKQBVhvHtbC7ajSY6rmP"
-          publishable-key="pk_test_51QwOQ2QBVhvHtbC7BtD4VF5H6WQDT2f4QChn7rvckQO4O9J0UzI70tdMMLTWx8DoC7Sl4ZvXv1fg4GpGiWLb9Gsm00rAY9pUjP">
-        </stripe-buy-button>
+        <h2>Add to Cart</h2>
+        <paypal-add-to-cart-button data-id="TS6MDG3AJCAGJ"></paypal-add-to-cart-button>
+        <script>
+          cartPaypal.AddToCart({ id: "TS6MDG3AJCAGJ" })
+        </script>
     </div>
     
     <div class="footer">
-        Copyright @ LfrxStudios 2025
+        Copyright © Lfrx Studios 2025
     </div>
 </body>
 </html>
