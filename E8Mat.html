@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Egzamin Ósmoklasisty - Matematyka</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            text-align: center;
+            padding: 20px;
+        }
+        .container {
+            max-width: 800px;
+            background: white;
+            padding: 20px;
+            margin: auto;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+        }
+        .question {
+            margin: 15px 0;
+            text-align: left;
+        }
+        button {
+            background: #007bff;
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        button:hover {
+            background: #0056b3;
+        }
+        .result {
+            font-size: 20px;
+            font-weight: bold;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Egzamin Ósmoklasisty - Matematyka</h2>
+        <form id="quiz">
+            <div class="question">
+                <p>1. Ile wynosi 15 × 3?</p>
+                <input type="radio" name="q1" value="30"> 30
+                <input type="radio" name="q1" value="45"> 45
+                <input type="radio" name="q1" value="60"> 60
+            </div>
+            <div class="question">
+                <p>2. Wynik działania 144 ÷ 12 to?</p>
+                <input type="radio" name="q2" value="10"> 10
+                <input type="radio" name="q2" value="12"> 12
+                <input type="radio" name="q2" value="14"> 14
+            </div>
+            <div class="question">
+                <p>3. Jakie jest pole kwadratu o boku 8 cm?</p>
+                <input type="radio" name="q3" value="64 cm²"> 64 cm²
+                <input type="radio" name="q3" value="32 cm²"> 32 cm²
+                <input type="radio" name="q3" value="16 cm²"> 16 cm²
+            </div>
+            <div class="question">
+                <p>4. Jaki jest wynik działania 5²?</p>
+                <input type="radio" name="q4" value="10"> 10
+                <input type="radio" name="q4" value="25"> 25
+                <input type="radio" name="q4" value="30"> 30
+            </div>
+            <div class="question">
+                <p>5. Ile wynosi wartość liczby π (pi) w przybliżeniu?</p>
+                <input type="radio" name="q5" value="3.141"> 3.141
+                <input type="radio" name="q5" value="3.14"> 3.14
+                <input type="radio" name="q5" value="3.2"> 3.2
+            </div>
+            <script>
+                let questions = "";
+                let correctAnswers = {
+                    q1: "45", q2: "12", q3: "64 cm²", q4: "25", q5: "3.14"
+                };
+                for (let i = 6; i <= 21; i++) {
+                    let a = Math.floor(Math.random() * 20) + 1;
+                    let b = Math.floor(Math.random() * 20) + 1;
+                    let correct = a + b;
+                    correctAnswers[`q${i}`] = correct.toString();
+                    questions += `<div class='question'>
+                                    <p>${i}. Ile wynosi ${a} + ${b}?</p>
+                                    <input type='radio' name='q${i}' value='${correct - 1}'> ${correct - 1}
+                                    <input type='radio' name='q${i}' value='${correct}'> ${correct}
+                                    <input type='radio' name='q${i}' value='${correct + 1}'> ${correct + 1}
+                                  </div>`;
+                }
+                document.getElementById("quiz").innerHTML += questions;
+            </script>
+            <button type="button" onclick="sprawdzTest()">Sprawdź</button>
+        </form>
+        <div class="result" id="wynik"></div>
+    </div>
+    <script>
+        function sprawdzTest() {
+            let punkty = 0;
+            let formularz = document.getElementById("quiz");
+            
+            for (let pytanie in correctAnswers) {
+                let odpowiedz = formularz[pytanie].value;
+                if (odpowiedz === correctAnswers[pytanie]) {
+                    punkty++;
+                }
+            }
+            
+            document.getElementById("wynik").innerText = `Twój wynik: ${punkty}/21`;
+        }
+    </script>
+</body>
+</html>
