@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Egzamin Ósmoklasisty - Język Polski</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            text-align: center;
+            padding: 20px;
+        }
+        .container {
+            max-width: 800px;
+            background: white;
+            padding: 20px;
+            margin: auto;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+        }
+        .question {
+            margin: 15px 0;
+            text-align: left;
+        }
+        button {
+            background: #007bff;
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        button:hover {
+            background: #0056b3;
+        }
+        .result {
+            font-size: 20px;
+            font-weight: bold;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Egzamin Ósmoklasisty - Język Polski</h2>
+        <form id="quiz"></form>
+        <button type="button" onclick="sprawdzTest()">Sprawdź</button>
+        <div class="result" id="wynik"></div>
+    </div>
+    <script>
+        let questions = [
+            { question: "Kto jest autorem \"Pana Tadeusza\"?", answers: ["Henryk Sienkiewicz", "Adam Mickiewicz", "Juliusz Słowacki"], correct: "Adam Mickiewicz" },
+            { question: "W którym wieku powstał \"Pan Tadeusz\"?", answers: ["XVII", "XVIII", "XIX"], correct: "XIX" },
+            { question: "Co to jest epitet?", answers: ["Rodzaj rymu", "Określenie rzeczownika", "Typ narracji"], correct: "Określenie rzeczownika" },
+            { question: "Kim był główny bohater \"Kamieni na szaniec\"?", answers: ["Rudy", "Zośka", "Alek"], correct: "Zośka" },
+            { question: "Co to jest rym?", answers: ["Układ liter w słowie", "Powtórzenie dźwięków w wersie", "Typ narracji"], correct: "Powtórzenie dźwięków w wersie" },
+            { question: "Jaki typ narracji występuje w powieści \"Quo Vadis\"?", answers: ["Pierwszoosobowa", "Trzecioosobowa", "Mieszana"], correct: "Trzecioosobowa" },
+            { question: "Co to jest metafora?", answers: ["Środek stylistyczny", "Rodzaj rymu", "Typ narracji"], correct: "Środek stylistyczny" },
+            { question: "Który z podanych utworów jest dramatem?", answers: ["Dziady", "Lalka", "Krzyżacy"], correct: "Dziady" },
+            { question: "Ile sylab ma trzynastozgłoskowiec?", answers: ["10", "12", "13"], correct: "13" },
+            { question: "Kto napisał \"Balladynę\"?", answers: ["Adam Mickiewicz", "Juliusz Słowacki", "Bolesław Prus"], correct: "Juliusz Słowacki" }
+        ];
+        
+        let quiz = document.getElementById("quiz");
+        let correctAnswers = {};
+        
+        questions.forEach((q, index) => {
+            let div = document.createElement("div");
+            div.classList.add("question");
+            div.innerHTML = `<p>${index + 1}. ${q.question}</p>`;
+            
+            q.answers.forEach((ans) => {
+                let input = `<input type='radio' name='q${index}' value='${ans}'> ${ans}`;
+                div.innerHTML += input;
+            });
+            
+            correctAnswers[`q${index}`] = q.correct;
+            quiz.appendChild(div);
+        });
+        
+        function sprawdzTest() {
+            let punkty = 0;
+            let formularz = document.getElementById("quiz");
+            
+            questions.forEach((_, index) => {
+                let odpowiedz = formularz[`q${index}`].value;
+                if (odpowiedz === correctAnswers[`q${index}`]) {
+                    punkty++;
+                }
+            });
+            
+            document.getElementById("wynik").innerText = `Twój wynik: ${punkty}/${questions.length}`;
+        }
+    </script>
+</body>
+</html>
